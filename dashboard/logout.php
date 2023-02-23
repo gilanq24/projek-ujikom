@@ -1,15 +1,8 @@
 <?php
 
-echo "
-<script>
-let text;
-if (confirm('Apakah anda yakin?') == true) {
-    window.location.href = '../index.php';
-} else {
-    
-}
+session_start();
+$_SESSION = [];
+session_unset();
+session_destroy();
 
-</script>
-";
-
-?>
+header("Location:../index.php");
