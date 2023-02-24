@@ -16,7 +16,11 @@ if (isset($_POST['tambah'])) {
         </script>
     ";
     }
+}elseif(isset($_POST['kembali'])) {
+    # code...
+    header("Location:./index.php?menu=katBarang");
 }
+
 
 ?>
 <style>
@@ -68,7 +72,7 @@ if (isset($_POST['tambah'])) {
         <input type="text" name="nama_kategori" id="nama_kategori" required>
         <br><br>
         <button type="submit" name="tambah">Tambah</button>
-    </form>
-
+        <button><a href="./index.php?menu=katBarang" style="color:black;">Kembali</button></a>
+    </form><br> 
 
 </center>

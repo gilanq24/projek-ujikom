@@ -28,9 +28,41 @@ function tambah_kategori_barang($data)
     return mysqli_affected_rows($conn);
 }
 
+function tambah_barang($data)
+{
+
+    global $conn;
+    $kode = $data['kode_barang'];
+    $nama = $data['nama_barang'];
+    $kategori = $data['kategori'];
+    $stok = $data['stok'];
+    $harga = $data['harga'];
+
+    $query = "INSERT INTO barang(kode_barang,nama_barang,kategori,stok,harga) VALUES('$kode','$nama','$kategori',$stok,$harga)";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+    
+}
+
+function hapus_barang($id)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM barang WHERE id=$id");
+    return mysqli_affected_rows($conn);
+}
+
 function hapus_kategori_barang($id)
 {
     global $conn;
     mysqli_query($conn, "DELETE FROM kategori_barang WHERE id=$id");
     return mysqli_affected_rows($conn);
+}
+
+function rupiah($angka){
+	
+	$hasil_rupiah = "Rp " . number_format($angka,'0',',','.');
+	return $hasil_rupiah;
+
 }
