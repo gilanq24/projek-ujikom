@@ -63,9 +63,9 @@ $barang = query("SELECT * FROM kategori_barang");
                             <td><?= $data['kode_kategori']; ?></td>
                             <td><?= $data['nama_kategori']; ?></td>
                             <td>
-                                <button type="button" class="btn btn-success"><a href="index.php?menu=katBarang&aksi=ubah&id=<?= $data['id']; ?>">Ubah</a></button>
+                                <button type="button" class="btn btn-success"><a href="index.php?menu=editKategoriBarang&id=<?= $data['id']; ?>">Ubah</a></button>
                                 &nbsp;
-                                <button type="button" class="btn btn-danger"><a href="index.php?menu=hapusBarang&id=<?= $data['id']; ?>" onclick="return confirm('Apakah Anda Yakin?');">Hapus</a></button>
+                                <button type="button" class="btn btn-danger"><a href="index.php?menu=hapusKatBarang&id=<?= $data['id']; ?>" onclick="return confirm('Apakah Anda Yakin?');">Hapus</a></button>
                             </td>
 
                         </tr>

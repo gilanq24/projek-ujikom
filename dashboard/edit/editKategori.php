@@ -1,17 +1,20 @@
 <?php
 
 require '../functions.php';
+$id = $_GET['id'];
 
-if (isset($_POST['tambah'])) {
-    if (tambah_kategori_barang($_POST) > 0) {
+$data = query("SELECT * FROM kategori_barang WHERE id='$id'")[0];
+
+if (isset($_POST['edit'])) {
+    if (editKategoriBarang($_POST) > 0) {
         echo "<script>
-            alert('Data Barang Berhasil Ditambahkan!');
+            alert('Kategori Barang Berhasil Dirubah!');
             window.location.href = 'index.php?menu=katBarang';
             </script>
         ";
     } else {
         echo "<script>
-        alert('Data Barang Gagal Ditambahkan!');
+        alert('Kategori Barang Gagal Dirubah!');s
         window.location.href = 'index.php?menu=katBarang';
         </script>
     ";
@@ -58,20 +61,21 @@ if (isset($_POST['tambah'])) {
 </style>
 
 <div style="padding:1rem">
-    <h2>Tambah Kategori Barang</h2><br>
-    <p>Silahkan Masukan Data Barang</p>
+    <h2>Edit Kategori</h2><br>
+    <p>Silahkan Edit Kategori Data Barang</p>
     <br>
 </div>
 
 <center>
     <form action="" method="post">
-
-        <label for="kodekategori">Kode Kategori : </label>
-        <input type="text" name="kode_kategori" id="kode_kategori" required><br><br>
-        <label for="nama_kategori">Nama Kategori : </label>
-        <input type="text" name="nama_kategori" id="nama_kategori" required>
+        <input type="text" value="<?= $id;?>" hidden name="id">
+        <label for="kode">Kode : </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="kode" id="kode" required value="<?= $data['kode_kategori'];?>">
         <br><br>
-        <button type="submit" name="tambah">Tambah</button>
+        <label for="nama_kategori">Nama Kategori : </label>
+        <input type="text" name="nama_kategori" id="nama_kategori" required value="<?= $data['nama_kategori'];?>">
+        <br><br>
+        <button type="submit" name="edit">Edit</button>
         <button><a href="./index.php?menu=katBarang" style="color:black;">Kembali</button></a>
     </form><br> 
 

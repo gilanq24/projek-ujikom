@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2023 at 04:41 AM
+-- Generation Time: Feb 27, 2023 at 05:01 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -60,9 +60,10 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `kode_barang`, `nama_barang`, `kategori`, `stok`, `harga`) VALUES
-(1, 'BR01', 'MORING', 'SNACK RINGAN', 20, 20000),
+(1, 'BR01', 'MORING', 'MINUMAN', 20, 20000),
 (2, 'BR02', 'JUS APEL', 'MINUMAN', 10, 1000),
-(4, 'ELT', 'LAPTOP LENOVO', 'ELEKTRONIK', 100, 1500000);
+(4, 'ELT', 'LAPTOP LENOVO', 'ELEKTRONIK', 100, 1500000),
+(5, 'LAP', 'LAPTOP ASUS', 'ELEKTRONIK', 5, 2000000);
 
 -- --------------------------------------------------------
 
@@ -82,8 +83,7 @@ CREATE TABLE `kategori_barang` (
 
 INSERT INTO `kategori_barang` (`id`, `kode_kategori`, `nama_kategori`) VALUES
 (1, 'MAK', 'MAKANAN'),
-(2, 'MIN', 'MINUMAN'),
-(3, 'SEM', 'SEMBAKO');
+(2, 'MIN', 'MINUMAN');
 
 --
 -- Indexes for dumped tables
@@ -121,13 +121,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `kategori_barang`
 --
 ALTER TABLE `kategori_barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

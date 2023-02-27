@@ -1,11 +1,11 @@
 <?php
 
-require '../../functions.php';
+require '../functions.php';
 
-$data = query("SELECT kategori FROM barang");
+$data = query("SELECT DISTINCT kategori FROM barang");
 
 if (isset($_POST['tambah'])) {
-    if (tambah_barang($_POST) > 0) {
+    if (tambahBarang($_POST) > 0) {
         echo "<script>
             alert('Barang Berhasil Ditambahkan!');
             window.location.href = 'index.php?menu=barang';
@@ -13,7 +13,7 @@ if (isset($_POST['tambah'])) {
         ";
     } else {
         echo "<script>
-        alert('Barang Berhasil Ditambahkan!');
+        alert('Barang Gagal Ditambahkan!');
         window.location.href = 'index.php?menu=barang';
         </script>
     ";
@@ -22,7 +22,6 @@ if (isset($_POST['tambah'])) {
     # code...
     header("Location:./index.php?menu=barang");
 }
-
 
 ?>
 <style>
@@ -81,13 +80,11 @@ if (isset($_POST['tambah'])) {
         <input type="number" name="stok" id="stok" required>
         <br><br>
         <label for="kategori">Kategori : </label>
-        <select name="kategori" id="kategori">
-        <?php $iter = 1; ?>
-        <?php foreach($data as $isi) : ?>
-            <option value="<?= $iter;?>"><?= $isi['kategori'];?></option>
-            <?php $iter++; ?>
-        <?php endforeach; ?>
-        </select>
+            <select name="kategori" required>
+                <?php foreach ($data as $hasil) :?>
+                    <option value="<?= $hasil['kategori']; ?>"><?= $hasil['kategori']; ?></option>
+                <?php endforeach; ?>
+            </select>
         <br><br>
         <button type="submit" name="tambah">Tambah</button>
         <button><a href="./index.php?menu=barang" style="color:black;">Kembali</button></a>

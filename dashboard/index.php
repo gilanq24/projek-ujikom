@@ -77,9 +77,17 @@ if (!isset($_SESSION['userweb'])) {
                 include 'logout.php';
             } elseif ($_GET['menu'] == "tambahKategoriBarang") {
                 include 'tambah/tambah_kat_barang.php';
-            } elseif ($_GET['menu'] == "hapusBarang") {
+            } elseif ($_GET['menu'] == "hapusKatBarang") {
                 include 'hapus/hapus_kategori_barang.php';
-            } else {
+            } elseif ($_GET['menu'] == "editKategoriBarang"){
+                include 'edit/editKategori.php';
+            } elseif ($_GET['menu'] == "tambahBarang") {
+                include 'tambah/tambah_barang.php';
+            }elseif ($_GET['menu'] == "editBarang") {
+                include 'edit/editBarang.php';
+            }elseif ($_GET['menu'] == "hapusBarang"){
+                include 'hapus/hapus_barang.php';
+            }else {
                 echo "
 
                     <script>

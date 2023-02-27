@@ -70,7 +70,7 @@ $barang = query("SELECT * FROM barang");
                             <td><?= $data['stok']; ?></td>
                             <td><?php echo rupiah($harga); ?></td>
                             <td>
-                                <button type="button" class="btn btn-success"><a href="index.php?menu=ubahBarang&id=<?= $data['id']; ?>">Ubah</a></button>
+                                <button type="button" class="btn btn-success"><a href="index.php?menu=editBarang&id=<?= $data['id']; ?>">Ubah</a></button>
                                 &nbsp;
                                 <button type="button" class="btn btn-danger"><a href="index.php?menu=hapusBarang&id=<?= $data['id']; ?>" onclick="return confirm('Apakah Anda Yakin?');">Hapus</a></button>
                             </td>
