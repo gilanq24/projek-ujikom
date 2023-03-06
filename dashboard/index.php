@@ -1,7 +1,5 @@
 <?php
 
-use PgSql\Lob;
-
 session_start();
 
 if (!isset($_SESSION['userweb'])) {
