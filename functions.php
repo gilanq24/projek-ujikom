@@ -2,7 +2,7 @@
 
 
 // fungsi query
-$conn = mysqli_connect("localhost", "root", "", "toserba_db");
+$conn = mysqli_connect("localhost", "root", "", "toserba");
 
 function query($query)
 {
@@ -34,7 +34,6 @@ function tambahBarang($data)
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
-
 }
 
 
@@ -67,8 +66,23 @@ function tambah_barang($data)
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
-    
 }
+
+function tambahPelanggan($data)
+{
+
+    global $conn;
+    $kode = $data['kode'];
+    $nama = $data['nama_pelanggan'];
+    $nohp = $data['no_hp'];
+
+    $query = "INSERT INTO pelanggan(kode,nama,no_hp) VALUES('$kode','$nama','$nohp')";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
 // Fungsi Fungsi Tambah Berakhir
 
 // Fungsi Fungsi Hapus
@@ -77,7 +91,6 @@ function hapus_barang($id)
     global $conn;
     mysqli_query($conn, "DELETE FROM barang WHERE id=$id");
     return mysqli_affected_rows($conn);
-    
 }
 
 function hapus_kategori_barang($id)
@@ -86,12 +99,20 @@ function hapus_kategori_barang($id)
     mysqli_query($conn, "DELETE FROM kategori_barang WHERE id=$id");
     return mysqli_affected_rows($conn);
 }
+
+function hapus_pelanggan($id)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM pelanggan WHERE id=$id");
+    return mysqli_affected_rows($conn);
+}
 // Fungsi Fungsi Hapus berakhir
 
 // Fungsi Edit Data
 
 
-function editKategoriBarang($data){
+function editKategoriBarang($data)
+{
 
     global $conn;
 
@@ -104,11 +125,11 @@ function editKategoriBarang($data){
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
-
 }
 
 
-function editBarang($data){
+function editBarang($data)
+{
 
     global $conn;
 
@@ -124,16 +145,15 @@ function editBarang($data){
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
-
 }
 
 // Fungsi Edit Data Berakhir
 
 
 
-function rupiah($angka){
-	
-	$hasil_rupiah = "Rp " . number_format($angka,'0',',','.');
-	return $hasil_rupiah;
+function rupiah($angka)
+{
 
+    $hasil_rupiah = "Rp " . number_format($angka, '0', ',', '.');
+    return $hasil_rupiah;
 }

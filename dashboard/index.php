@@ -1,5 +1,7 @@
 <?php
 
+use PgSql\Lob;
+
 session_start();
 
 if (!isset($_SESSION['userweb'])) {
@@ -57,47 +59,76 @@ if (!isset($_SESSION['userweb'])) {
         <div style="padding:1rem">
             <?php
             if (!isset($_GET['menu'])) {
-                # code...
                 header("Location:index.php?menu=dashboard");
             }
 
-            if ($_GET['menu'] == "" || $_GET['menu'] == "dashboard") {
-                include 'welcome.php';
-            } elseif ($_GET['menu'] == "katBarang") {
-                include 'kategoriBarang.php';
-            } elseif ($_GET['menu'] == "barang") {
-                include 'barang.php';
-            } elseif ($_GET['menu'] == "pelanggan") {
-                include 'pelanggan.php';
-            } elseif ($_GET['menu'] == "penjualan") {
-                include 'penjualan.php';
-            } elseif ($_GET['menu'] == "laporanPenjualan") {
-                include 'laporanPenjualan.php';
-            } elseif ($_GET['menu'] == "logout") {
-                include 'logout.php';
-            } elseif ($_GET['menu'] == "tambahKategoriBarang") {
-                include 'tambah/tambah_kat_barang.php';
-            } elseif ($_GET['menu'] == "hapusKatBarang") {
-                include 'hapus/hapus_kategori_barang.php';
-            } elseif ($_GET['menu'] == "editKategoriBarang"){
-                include 'edit/editKategori.php';
-            } elseif ($_GET['menu'] == "tambahBarang") {
-                include 'tambah/tambah_barang.php';
-            }elseif ($_GET['menu'] == "editBarang") {
-                include 'edit/editBarang.php';
-            }elseif ($_GET['menu'] == "hapusBarang"){
-                include 'hapus/hapus_barang.php';
-            }else {
-                echo "
 
-                    <script>
-                    alert('menu tidak ditemukan/tidak ada');
-                    window.location.href = 'index.php';
-                    </script>
-                
-                ";
+            $location = $_GET['menu'];
+
+            switch ($location) {
+
+                    // CASE SIDEBAR MENU
+
+                case 'dashboard':
+                    include 'welcome.php';
+                    break;
+                case 'katBarang':
+                    include 'kategoriBarang.php';
+                    break;
+                case 'barang':
+                    include 'barang.php';
+                    break;
+                case 'pelanggan':
+                    include 'pelanggan.php';
+                    break;
+                case 'penjualan':
+                    include 'penjualan.php';
+                    break;
+                case 'laporanPenjualan':
+                    include 'laporanPenjualan.php';
+                    break;
+                case 'logout':
+                    include 'logout.php';
+                    break;
+
+                    // CASE MENU KATEGORI
+
+                case 'tambahKategoriBarang':
+                    include 'tambah/tambah_kat_barang.php';
+                    break;
+                case 'hapusKatBarang':
+                    include 'hapus/hapus_kategori_barang.php';
+                    break;
+                case 'editKategoriBarang':
+                    include 'edit/editKategori.php';
+                    break;
+
+                    // CASE MENU BARANG
+
+                case 'tambahBarang':
+                    include 'tambah/tambah_barang.php';
+                    break;
+
+                case 'editBarang':
+                    include 'edit/editBarang.php';
+                    break;
+
+                case 'hapusBarang':
+                    include 'hapus/hapus_barang.php';
+                    break;
+
+                    // CASE MENU PELANGGAN
+
+                case 'tambahPelanggan':
+                    include 'tambah/tambah_pelanggan.php';
+                    break;
+                case 'hapusPelanggan':
+                    include 'hapus/hapus_pelanggan.php';
+                    break;
+                case 'editPelanggan':
+                    include 'edit/edit_pelanggan.php';
+                    break;
             }
-
 
             ?>
         </div>

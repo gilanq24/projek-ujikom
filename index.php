@@ -4,7 +4,6 @@ if (isset($_SESSION['userweb'])) {
 
   header("Location:dashboard/index.php");
 }
-
 require 'functions.php';
 
 $error = false;
