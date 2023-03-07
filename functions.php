@@ -83,6 +83,24 @@ function tambahPelanggan($data)
     return mysqli_affected_rows($conn);
 }
 
+function tambahKeranjang($data)
+{
+
+    global $conn;
+    $kode = $data['kode'];
+    $nama_pelanggan = $data['namapelanggan'];
+    $namaBarang = $data['barang'];
+    $qty = $data['qty'];
+    $tanggal = $data['tanggal'];
+
+    $query = "INSERT INTO keranjang(id, kode, nama_pelanggan, nama_barang, qty, harga_satuan, tanggal)VALUES(NULL, '$kode', '$nama_pelanggan', '$namaBarang', $qty, NULL, '$tanggal');";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+
 // Fungsi Fungsi Tambah Berakhir
 
 // Fungsi Fungsi Hapus
@@ -104,6 +122,13 @@ function hapus_pelanggan($id)
 {
     global $conn;
     mysqli_query($conn, "DELETE FROM pelanggan WHERE id=$id");
+    return mysqli_affected_rows($conn);
+}
+
+function hapus_keranjang($id)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM keranjang WHERE id=$id");
     return mysqli_affected_rows($conn);
 }
 // Fungsi Fungsi Hapus berakhir

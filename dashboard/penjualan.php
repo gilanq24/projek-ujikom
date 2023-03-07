@@ -1,13 +1,37 @@
 <?php
-// array(4) { ["kode"]=> string(3) "A01" ["tanggal"]=> string(10) "2023-03-06" ["qty"]=> string(1) "5" ["tambah"]=> string(0) "" }
+require '../functions.php';
+/* array(5) { 
+array(6) { 
+
+    ["kode"]=> string(3) "P01" 
+    ["namapelanggan"]=> string(17) "Cristiano Ronaldo" 
+    ["tanggal"]=> string(10) "2023-03-07" 
+    ["barang"]=> string(4) "Odol" 
+    ["qty"]=> string(1) "5" 
+    ["tambah"]=> string(0) "" }
+
+    */
 // require '../functions.php';
 // $id = $_GET['id'];
-// $ambilHarga = query("SELECT harga FROM barang WHERE nama_barang = $id");
+$datas = query("SELECT * FROM keranjang");
 
 if (isset($_POST['tambah'])) {
-
-    $_SESSION['pesanan'] = $_POST;
-    $datas = $_SESSION['pesanan'];
+    if (tambahKeranjang($_POST) > 0) {
+        echo "<script>
+                alert('Pesanan Berhasil Ditambahkan');
+                window.location.href = 'index.php?menu=penjualan';
+                </script>
+            ";
+    } else {
+        echo "<script>
+            alert('Pesanan Gagal Ditambahkan!');
+            window.location.href = 'index.php?menu=penjualan';
+            </script>
+        ";
+    }
+} elseif (isset($_POST['kembali'])) {
+    # code...
+    header("Location:./index.php?menu=penjualan");
 }
 
 ?>
@@ -56,7 +80,7 @@ if (isset($_POST['tambah'])) {
     <br>
     <br>
     <label for="namaPel">Nama Pelanggan : </label>
-    &nbsp;<select style="height:40px;">
+    &nbsp;<select style="height:40px;" name="namapelanggan">
         <option>Pilih Pelanggan</option>
         <option>Cristiano Ronaldo</option>
         <option>Lionel Messi</option>
@@ -93,19 +117,23 @@ if (isset($_POST['tambah'])) {
             </thead>
             <tbody>
 
-                <!-- array(4) { ["kode"]=> string(3) "A01" ["tanggal"]=> string(10) "2023-03-06" ["qty"]=> string(1) "5" ["tambah"]=> string(0) "" } -->
-                <tr>
-                    <td><?= $datas['kode'] ?></td>
-                    <td><?= $_POST['barang'] ?></td>
-                    <td><?= $datas['qty'] ?></td>
-                    <td>5000</td>
+
+                <?php foreach ($datas as $data) : ?>
+                    <tr>
+                        <td><?= $data['kode']; ?></td>
+                        <td><?= $data['nama_barang']; ?></td>
+                        <td><?= $data['qty']; ?></td>
+                        <td><?= $data['harga_satuan']; ?></td>
 
 
-                    <td>
-                        <button type="button" class="btn btn-danger"><a href="#">Hapus</a></button>
-                    </td>
-                </tr>
+                        <td>
+                            <button type="button" class="btn btn-danger"><a href="hapus/hapus_keranjang.php?id=<?= $data['id']; ?>">Hapus</a></button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
+        <br>
+        <button>Simpan Data</button>
     </div>
 </form>
